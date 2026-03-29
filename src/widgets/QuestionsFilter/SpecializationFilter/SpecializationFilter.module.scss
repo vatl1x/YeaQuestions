@@ -1,0 +1,34 @@
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    color: var(--text-description);
+    font-weight: 400;
+}
+
+.error{
+    width: 100%;
+    text-align: center;
+    color: red;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.showAll {
+    font-size: 14px;
+    color: var(--link-color) !important;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

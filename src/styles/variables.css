@@ -1,0 +1,52 @@
+:root {
+    /* ===== ЦВЕТА ГЛОБАЛЬНЫЕ =====*/
+    --main-bg: #f4f4f4;
+    --element-bg: #fdfdfd;
+    --extra-bg: #18003e;
+    --color-white: #ffffff;
+
+    /* ===== ЦВЕТА ТЕКСТА ===== */
+    --text-title: #191919;
+    --text-description: #474747;
+    --footer-description: #8c8c8c;
+    --text-dark: #303030;
+
+    /* ===== ЦВЕТА ССЫЛОК ===== */
+    --link-color: #5509cc;
+
+    /* ===== ЦВЕТА ГРАНИЦ ===== */
+    --border-color: #bababa;
+    --border-color-active: #5509cc;
+    --border-input-active: rgba(106, 11, 255, 0.5);
+    --border-color-input-filter: #e8e8e8;
+
+    /* ===== РАЗМЕР ШРИФТОВ ===== */
+
+    --font-size-s: 12px;
+    --font-size-m: 14px;
+    --font-size-l: 16px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 20px;
+    --font-size-xxxl: 24px;
+
+    /* ===== ОТСТУПЫ ===== */
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 24px;
+
+    /* ===== СКРУГЛЕНИЯ ===== */
+    --radius-s: 4px;
+    --radius-m: 8px;
+    --radius-xm: 12px;
+    --radius-l: 16px;
+    --radius-xl: 24px;
+    --radius-xxxl: 68px;
+
+    /* ===== ШРИФТ ===== */
+    --font-family: "Manrope", sans-serif;
+
+    /* ===== ЦВЕТА КНОПОК ===== */
+    --btn-primary-bg: #6a0bff;
+    --btn-primary-text: #ffffff;
+    --btn-active-bg: #f8f8f8;
+}

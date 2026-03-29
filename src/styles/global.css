@@ -1,0 +1,12 @@
+body {
+    font-family: var(--font-family);
+    color: var(--text-title);
+    background-color: var(--main-bg);
+    font-size: var(--font-size-l);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 3vw, 40px);
+}

@@ -1,0 +1,38 @@
+.layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    align-items: flex-start;
+    margin-bottom: 130px;
+    // min-height: 1420px;
+}
+
+.filterWrap {
+    width: 392px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    align-self: flex-start;
+}
+
+.filterPopover {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media (max-width: 1024px) {
+    .filterWrap {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .filterPopover {
+        display: none;
+    }
+}

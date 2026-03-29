@@ -1,0 +1,64 @@
+.btnsWrap {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    margin-left: auto;
+}
+
+.loginBtn {
+    padding: 12px 20px;
+    border-radius: var(--radius-xm);
+    min-height: 38px;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+
+    color: var(--link-color);
+
+    &:hover,
+    &:active {
+        background-color: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
+    }
+}
+
+.registrationBtn {
+    background-color: var(--btn-primary-bg);
+    font-size: var(--font-size-xl);
+    padding: 12px 29px;
+    border-radius: 12px;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:active {
+        background-color: var(--border-color-active);
+        color: var(--btn-primary-text);
+    }
+}
+
+a.registrationBtn {
+    color: var(--color-white) !important;
+}
+
+.btnsWrapMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.loginBtnMobile,
+.registrationBtnMobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+
+    &:hover {
+        color: var(--btn-primary-bg);
+        background-color: var(--border-color);
+        border-radius: var(--radius-m);
+        text-decoration: underline;
+    }
+}

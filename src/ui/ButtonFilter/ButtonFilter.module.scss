@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-xm);
+    border: 1.5px solid var(--border-color);
+
+    &:hover {
+        background-color: var(--btn-primary-bg);
+        border-color: var(--btn-primary-bg);
+        cursor: pointer;
+
+        .title {
+            color: var(--color-white);
+        }
+    }
+}
+
+.active {
+    border-color: var(--btn-primary-bg);
+}
+
+.title {
+    font-weight: 500;
+    color: var(--text-dark);
+}

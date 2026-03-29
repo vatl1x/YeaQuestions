@@ -1,0 +1,36 @@
+.arrowRight{
+    rotate: 180deg;
+}
+.pagination, .collectionPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pages{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-description);
+
+    &:disabled{
+        opacity: 0.4;
+        cursor: default;
+    }
+}
+
+.currentPage{
+    padding: 2px 6px;
+    border-radius: 2px;
+    color: var(--btn-primary-text);
+    background-color: var(--btn-primary-bg);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.prevBtn, .nextBtn{
+    &:disabled{
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}

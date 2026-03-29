@@ -1,0 +1,23 @@
+.searchValue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13.5px 24px;
+    border: 1px solid var(--border-color-input-filter);
+    border-radius: var(--radius-xm);
+
+    &:hover {
+        border-color: var(--border-input-active);
+        cursor: text;
+    }
+    &:focus-within {
+        border-color: #6a0bff;
+    }
+}
+
+.searchInput {
+    &:focus {
+        outline: red;
+        width: 100%;
+    }
+}
