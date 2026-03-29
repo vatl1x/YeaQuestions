@@ -11,7 +11,6 @@ export interface QuestionsResponse {
     rate: number;
     complexity: number;
     shortAnswer: string;
-    longAnswer: string;
 }
 
 const QuestionCard = ({
@@ -19,7 +18,6 @@ const QuestionCard = ({
     rate,
     complexity,
     shortAnswer,
-    longAnswer,
 }: QuestionsResponse) => {
     const [isOpen, setIsOpen] = useState(false);
 

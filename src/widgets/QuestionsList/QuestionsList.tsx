@@ -69,7 +69,6 @@ const QuestionsList = ({
                                 rate={question.rate}
                                 complexity={question.complexity}
                                 shortAnswer={question.shortAnswer}
-                                longAnswer={question.longAnswer}
                             />
                         ))}
                     </ul>

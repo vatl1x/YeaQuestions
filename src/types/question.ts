@@ -3,7 +3,6 @@ export interface Question{
     rate: number;
     complexity: number;
     shortAnswer: string;
-    longAnswer: string;
 }
 
 export interface QuestionsParams {
