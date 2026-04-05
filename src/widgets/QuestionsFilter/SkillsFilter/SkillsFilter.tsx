@@ -62,7 +62,7 @@ const SkillsFilter = () => {
                     <ButtonFilter
                         key={item.id}
                         title={item.title}
-                        icon={item.imageSrc}
+                        icon={item.imageSrc ?? undefined}
                         isActive={query.skills?.includes(item.id)}
                         onClick={() => toggleSkills(item.id)}
                     />
