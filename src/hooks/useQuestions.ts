@@ -7,7 +7,8 @@ import type { QuestionApiResponse } from "../types/question";
 
 export const useQuestions = () => {
     const { query, setQuery } = useQuestionsQuery();
-    const { setIsQuestionsLoading } = useFilters();
+    const { setIsQuestionsLoading, setQuestionSlugs } =
+        useFilters();
     const location = useLocation();
     const [data, setData] = useState<QuestionApiResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,9 @@ export const useQuestions = () => {
                     rate: query.rate,
                 });
                 setData(response);
+                setQuestionSlugs(
+                    response.data?.map((question) => question.slug),
+                );
             } catch (error) {
                 setError(`Ошибка загрузки: ${error}`);
             } finally {

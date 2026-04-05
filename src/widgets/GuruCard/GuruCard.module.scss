@@ -1,0 +1,42 @@
+.guru {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1.5px solid var(--btn-primary-bg);
+    border-radius: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.role {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-description);
+    opacity: 0.6;
+}
+
+.description{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.socials{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon{
+    color: var(--border-color-active)
+}

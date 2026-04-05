@@ -1,6 +1,10 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/api";
-import type { QuestionApiResponse, QuestionsParams } from "../types/question";
+import type {
+    DetailedQuestion,
+    QuestionApiResponse,
+    QuestionsParams,
+} from "../types/question";
 
 export const getQuestions = async (
     params?: QuestionsParams,
@@ -26,6 +30,20 @@ export const getQuestions = async (
                     title: params?.title?.length ? params?.title : undefined,
                 },
             },
+        );
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+export const getQuestionsBySlug = async (
+    slug: string,
+): Promise<DetailedQuestion> => {
+    try {
+        const response = await axios.get(
+            `${BASE_URL}/questions/by-slug/${slug}`,
         );
         return response.data;
     } catch (error) {

@@ -1,0 +1,63 @@
+.metricForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 24px;
+    max-width: 392px;
+}
+
+.closeWrap {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.closeBtn {
+    width: 20px;
+    height: 20px;
+}
+
+.metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.questionLevel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.levelLabel {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-description);
+    opacity: 0.66;
+}
+
+.metricBadge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.author {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.authorName {
+    color: var(--btn-primary-bg);
+}
+
+@media (max-width: 600px) {
+    .metricForm {
+        max-width: none;
+    }
+}
+
+@media (max-width: 446px) {
+    .metricForm {
+        padding: 16px;
+    }
+}

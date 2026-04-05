@@ -1,0 +1,44 @@
+.longAnswer {
+    display: flex;
+    flex-direction: column;
+}
+
+.longAnswerTitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.longAnswerDescription {
+    position: relative;
+    padding-top: 20px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+
+    &.expanded {
+        &::after {
+            display: none;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(transparent, var(--color-white));
+        pointer-events: none;
+    }
+}
+
+.btnExpand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnExpandIcon {
+    transform: rotate(180deg);
+}

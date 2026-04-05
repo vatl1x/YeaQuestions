@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFilters } from "../../../context/FiltersContext";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { useQuestionsQuery } from "../../../hooks/useQuestionsQuery";
@@ -11,11 +11,22 @@ const SearchFilter = () => {
     const { isQuestionsLoading } = useFilters();
     const [value, setValue] = useState(query.title);
     const debounceValue = useDebounce(value, 1500);
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
+        if (debounceValue === query.title) {
+            return;
+        }
+
         setQuery({ ...query, title: debounceValue, page: 1 });
     }, [debounceValue]);
-
+    
+    //очищает инпут при сбросе фильтров
     useEffect(() => {
         setValue(query.title);
     }, [query.title]);

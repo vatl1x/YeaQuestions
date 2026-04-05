@@ -1,0 +1,88 @@
+.layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 392px);
+    gap: 20px;
+    margin-bottom: 130px;
+    align-items: start; //не дает карточке справа растягиваться вниз
+    position: relative;
+}
+
+.prevPage {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 16;
+    font-weight: 500;
+    color: var(--btn-primary-bg);
+}
+
+.question {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btnExpand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-dark);
+}
+
+.btnExpandIcon {
+    rotate: 180deg;
+}
+
+.questionSidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebarPopover {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.errorLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+.errorTitle {
+    font-size: 26px;
+}
+
+@media (max-width: 1024px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+    .questionSidebar {
+        display: none;
+    }
+}
+
+@media (min-width: 1025px) {
+    .sidebarPopover {
+        display: none;
+    }
+    .guruCardMobile {
+        display: none;
+    }
+}
+
+@media (max-width: 446px) {
+    .questionNavigation {
+        padding: 6px 0;
+    }
+}

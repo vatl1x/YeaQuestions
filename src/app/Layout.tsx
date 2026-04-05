@@ -13,7 +13,6 @@ const Layout = () => {
                     <Outlet />
                 </FiltersProvider>
             </main>
-
             <Footer />
         </div>
     );

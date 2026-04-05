@@ -1,0 +1,33 @@
+.questionNavigation {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.btnPrev,
+.btnNext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5a5a5a;
+    gap: 8px;
+    padding: 14px 16px;
+    border-radius: 12px;
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+.btnNextIcon {
+    transform: rotate(180deg);
+}
+
+.btnLabel {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+}

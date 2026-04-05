@@ -1,7 +1,7 @@
 export interface Skill {
     id: number;
     title: string;
-    imageSrc: string;
+    imageSrc: string | null;
 }
 
 export interface SkillsParams {

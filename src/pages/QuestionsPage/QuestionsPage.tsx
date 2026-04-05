@@ -16,6 +16,7 @@ const QuestionsPage = () => {
         error,
     } = useQuestions();
 
+
     return (
         <div className="container">
             <div className={styles.layout}>

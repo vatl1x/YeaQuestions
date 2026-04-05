@@ -8,5 +8,5 @@ export const PATHS = {
     SKILLS: "skills",
     DOCS: "docs",
     MEDIA: "media",
-    DETAILED_QUESTION: "detailed-question",
+    DETAILED_QUESTION: "questions/:slug",
 } as const;

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useFilters } from "../../context/FiltersContext";
 import Pagination from "../../components/Pagination/Pagination";
-import QuestionCard from "../../components/QuestionsCard/QuestionsCard";
+import Card from "../../ui/Card/Card";
+import QuestionCard from "../../components/QuestionCard/QuestionCard";
 import withSkeleton from "../../helpers/hocs/withSkeleton";
 import { useQuestionsQuery } from "../../hooks/useQuestionsQuery";
 import { DEFAULT_QUERY } from "./questionsList.constants";
@@ -28,6 +30,11 @@ const QuestionsList = ({
     error,
 }: Props) => {
     const { query, setQuery } = useQuestionsQuery();
+    const { specializations } = useFilters();
+
+    const specializationTitle = specializations?.find(
+        (item) => item.id === query.specializationId,
+    )?.title;
 
     useEffect(() => {
         //прокрутка и ждем чтоб все прогрузилось, иначе лагает
@@ -45,11 +52,13 @@ const QuestionsList = ({
     }
 
     return (
-        <div className={styles.questionList}>
+        <Card className={styles.questionList}>
             <div className={styles.listHeader}>
                 <h1 className={styles.title}>
-                    Вопросы{" "}
-                    {query.specializationTitle ?? "по всем специализациям"}
+                    Вопросы по{" "}
+                    {specializationTitle
+                        ? specializationTitle
+                        : "всем специализациям"}
                 </h1>
                 <button
                     className={styles.filterBtnIcon}
@@ -64,8 +73,9 @@ const QuestionsList = ({
                     <ul className={styles.accordion}>
                         {questions.map((question) => (
                             <QuestionCard
-                                key={question.title}
+                                key={question.slug}
                                 title={question.title}
+                                slug={question.slug}
                                 rate={question.rate}
                                 complexity={question.complexity}
                                 shortAnswer={question.shortAnswer}
@@ -96,7 +106,7 @@ const QuestionsList = ({
                     </button>
                 </div>
             )}
-        </div>
+        </Card>
     );
 };
 

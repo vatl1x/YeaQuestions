@@ -17,8 +17,6 @@
     }
 }
 
-// .question h2 {
-// }
 .questionTitle {
     max-width: 455px;
     font-size: var(--font-size-xxl);
@@ -27,23 +25,33 @@
 
 .arrow {
     transition: transform 0.3s ease;
-    transform: rotate(180deg); // по умолчанию смотрит вниз
+    transform: rotate(180deg);
 }
 
 .arrowOpen {
-    transform: rotate(0deg); // при открытии смотрит вверх
+    transform: rotate(0deg);
 }
 
 .accordionContent {
-    overflow: hidden;
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
+    padding-top: 0;
     transition:
-        max-height 0.4s ease,
+        grid-template-rows 0.4s ease,
         padding-top 0.4s ease;
+}
+
+.accordionContentOpen {
+    grid-template-rows: 1fr;
+    padding-top: 24px;
+}
+
+.accordionContentInner {
+    overflow: hidden;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding-top: 0;
 }
 
 .metric {

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Card from "../../ui/Card/Card";
 import SearchFilter from "./SearchFilter/SearchFilter";
 import SpecializationFilter from "./SpecializationFilter/SpecializationFilter";
 import SkillsFilter from "./SkillsFilter/SkillsFilter";
@@ -16,7 +17,7 @@ const QuestionFilter = ({ onFilterClose }: Props) => {
     const filtersRef = useRef<HTMLDivElement>(null)
     useClickOutside(filtersRef, onFilterClose)
     return (
-        <div ref={filtersRef} className={styles.filterForm}>
+        <Card ref={filtersRef} className={styles.filterForm}>
             {onFilterClose && (
                 <div className={styles.closeWrap}>
                     <button onClick={onFilterClose} className={styles.closeBtn}>
@@ -33,7 +34,7 @@ const QuestionFilter = ({ onFilterClose }: Props) => {
             <SkillsFilter />
             <ComplexityFilter />
             <RatingFilter />
-        </div>
+        </Card>
     );
 };
 

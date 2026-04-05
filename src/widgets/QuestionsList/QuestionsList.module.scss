@@ -3,9 +3,6 @@
     flex-direction: column;
     gap: 24px;
     padding: 24px 20px 40px;
-    box-shadow: 0 4px 10px 0 rgba(106, 99, 118, 0.1);
-    background-color: var(--color-white);
-    border-radius: var(--radius-xl);
     min-width: 0;
     flex: 1;
 }
@@ -80,7 +77,7 @@
     margin-top: auto; // прижимает к низу
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
     .filterBtnIcon {
         display: none;
     }

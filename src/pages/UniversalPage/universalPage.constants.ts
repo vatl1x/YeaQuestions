@@ -7,5 +7,4 @@ export const universalPage: UniversalPageRoute[] = [
     { path: PATHS.SKILLS, title: "навыков" },
     { path: PATHS.DOCS, title: "с документами" },
     { path: PATHS.MEDIA, title: "с нашими медиа" },
-    { path: PATHS.DETAILED_QUESTION, title: "ПОДРОБНЫЙ ВОПРОС" },
 ];

@@ -1,5 +1,6 @@
-export interface Question{
-    title:string;
+export interface Question {
+    title: string;
+    slug: string;
     rate: number;
     complexity: number;
     shortAnswer: string;
@@ -14,10 +15,32 @@ export interface QuestionsParams {
     complexity?: number[];
     rate?: number[];
 }
-
-export interface QuestionApiResponse {  
+export interface QuestionApiResponse {
     data: Question[];
     total: number;
     page: number;
     limit: number;
+}
+
+export interface DetailedQuestion {
+    id: number;
+    slug: string;
+    title: string;
+    description: string;
+    imageSrc: string | null;
+    shortAnswer: string;
+    longAnswer: string;
+    rate: number;
+    complexity: number;
+    keywords: string[];
+    createdBy: {
+        id: string;
+        username: string;
+    };
+
+    questionSkills: {
+        id: number;
+        title: string;
+        imageSrc: string | null;
+    }[];
 }

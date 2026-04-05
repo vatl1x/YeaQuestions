@@ -2,10 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toNumberArray, toPositiveNumber } from "../utils/QueryParams";
 
 export interface IQuery {
-    page:number;
+    page: number;
     limit: number;
     title: string;
-    specializationTitle?: string;
     specializationId: number | null;
     skills?: number[];
     complexity?: number[];

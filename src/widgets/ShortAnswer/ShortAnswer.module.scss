@@ -1,0 +1,17 @@
+.shortAnswer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.shortAnswerTitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.shortAnswerDescription {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+}

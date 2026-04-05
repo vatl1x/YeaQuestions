@@ -1,30 +1,29 @@
-import figmaIcon from "../../assets/icons/social/figma-icon.svg"
-import githubIcon from "../../assets/icons/social/github-icon.svg";
-import youtubeIcon from "../../assets/icons/social//youtube-icon.svg";
-import tiktokIcon from "../../assets/icons/social//tiktok-icon.svg";
-import telegramIcon from "../../assets/icons/social//telegram-icon.svg";
+import FigmaIcon from "../../assets/icons/social/figma-icon.svg?react";
+import GithubIcon from "../../assets/icons/social/github-icon.svg?react";
+import YoutubeIcon from "../../assets/icons/social/youtube-icon.svg?react";
+import TiktokIcon from "../../assets/icons/social/tiktok-icon.svg?react";
+import TelegramIcon from "../../assets/icons/social//telegram-icon.svg?react";
 
 export const SOCIALS = [
     {
         href: "https://www.figma.com/community/file/1438482355619792777/yeahub-public",
-        icon: figmaIcon,
+        Icon: FigmaIcon,
         title: "Figma",
     },
     {
         href: "https://github.com/YeaHubTeam/yeahub-platform",
-        icon: githubIcon,
+        Icon: GithubIcon,
         title: "GitHub",
     },
     {
-        
         href: "https://www.youtube.com/@yeahub",
-        icon: youtubeIcon,
+        Icon: YoutubeIcon,
         title: "YouTube",
     },
     {
         href: "https://www.tiktok.com/@yeahub%5C_it",
-        icon: tiktokIcon,
+        Icon: TiktokIcon,
         title: "TikTok",
     },
-    { href: "https://t.me/yeahub", icon: telegramIcon, title: "Telegram" },
+    { href: "https://t.me/yeahub", Icon: TelegramIcon, title: "Telegram" },
 ];

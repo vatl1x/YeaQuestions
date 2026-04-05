@@ -30,16 +30,14 @@ const Footer = () => {
                                 Медиа
                             </Link>
                             <div className={styles.socials}>
-                                {SOCIALS.map((social) => (
+                                {SOCIALS.map(({ title, href, Icon }) => (
                                     <a
-                                        href={social.href}
-                                        key={social.title}
+                                        href={href}
+                                        key={title}
+                                        title={title}
                                         className={styles.socialLink}
                                     >
-                                        <img
-                                            src={social.icon}
-                                            title={social.title}
-                                        />
+                                        <Icon width={28} height={28} className={styles.icon}/>
                                     </a>
                                 ))}
                             </div>

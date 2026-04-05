@@ -57,6 +57,10 @@
     gap: 8px;
 }
 
+.icon{
+    color: var(--color-white);
+}
+
 @media (max-width: 460px) {
     .socials {
         flex-shrink: 0;
