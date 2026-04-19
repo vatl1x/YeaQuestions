@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { useFilters } from "../../../context/FiltersContext";
 import { useQuestionsQuery } from "../../../hooks/useQuestionsQuery";
 import ButtonFilter from "../../../ui/ButtonFilter/ButtonFilter";
 import Skeleton from "../../../ui/Skeleton/Skeleton";
 import styles from "./SpecializationFilter.module.scss";
+import { useGetSpecializationsQuery } from "../../../store/services/specializationsApi";
 
 const SpecializationFilter = () => {
     const { query, setQuery } = useQuestionsQuery();
-    const { specializations, isSpecializationsLoading } = useFilters();
+    const {
+        data,
+        isLoading: isSpecializationsLoading,
+        error,
+    } = useGetSpecializationsQuery();
+
+    const specializations = data?.data ?? [];
+
     const [isOpen, setIsOpen] = useState(false);
 
-    const sortedSpecialization = specializations?.sort((a, b) => a.id - b.id);
+    const sortedSpecialization = [...specializations]?.sort(
+        (a, b) => a.id - b.id,
+    );
+
     const visibleSpecialization = isOpen
         ? sortedSpecialization
         : sortedSpecialization?.slice(0, 5);
@@ -46,6 +56,19 @@ const SpecializationFilter = () => {
                     height="20px"
                     borderRadius="10px"
                 />
+            </div>
+        );
+    }
+
+    if (error) {
+        const errorMessage =
+            "status" in error
+                ? `Ошибка загрузки: ${String(error.status)}`
+                : "Ошибка загрузки";
+
+        return (
+            <div className={styles.filterGroup}>
+                <div className={styles.error}>{errorMessage}</div>
             </div>
         );
     }

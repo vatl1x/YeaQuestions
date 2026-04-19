@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { useQuestionsQuery } from "../../../hooks/useQuestionsQuery";
-import { useSkills } from "../../../hooks/useSkills";
 import ButtonFilter from "../../../ui/ButtonFilter/ButtonFilter";
 import Skeleton from "../../../ui/Skeleton/Skeleton";
 import styles from "./SkillsFilter.module.scss";
+import { useGetSkillsQuery } from "../../../store/services/skillsApi";
 
 const SkillsFilter = () => {
     const { query, setQuery } = useQuestionsQuery();
-    const { skills, isLoading, error } = useSkills();
+    const { data, isLoading, error } = useGetSkillsQuery({
+        specializationId: query.specializationId,
+    });
+
+    const skills = data?.data ?? [];
+
     const [isOpen, setIsOpen] = useState(false);
 
-    const sortedSkills = skills?.sort((a, b) => a.id - b.id);
+    const sortedSkills = [...skills]?.sort((a, b) => a.id - b.id);
     const visibleSkills = isOpen ? sortedSkills : sortedSkills?.slice(0, 5);
 
     const toggleSkills = (id: number) => {
@@ -47,9 +52,14 @@ const SkillsFilter = () => {
     }
 
     if (error) {
+        const errorMessage =
+            "status" in error
+                ? `Ошибка загрузки: ${String(error.status)}`
+                : "Ошибка загрузки";
+
         return (
             <div className={styles.filterGroup}>
-                <div className={styles.error}>{error}</div>
+                <div className={styles.error}>{errorMessage}</div>
             </div>
         );
     }

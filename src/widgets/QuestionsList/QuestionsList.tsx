@@ -1,15 +1,14 @@
-import { useEffect } from "react";
-import { useFilters } from "../../context/FiltersContext";
+import { useEffect, useMemo } from "react";
 import Pagination from "../../components/Pagination/Pagination";
 import Card from "../../ui/Card/Card";
 import QuestionCard from "../../components/QuestionCard/QuestionCard";
 import withSkeleton from "../../helpers/hocs/withSkeleton";
 import { useQuestionsQuery } from "../../hooks/useQuestionsQuery";
 import { DEFAULT_QUERY } from "./questionsList.constants";
+import { useGetSpecializationsQuery } from "../../store/services/specializationsApi";
 import filterBtn from "../../assets/icons/filter-btn.svg";
 import styles from "./QuestionsList.module.scss";
 import type { Question } from "../../types/question";
-
 interface Props {
     onFilterToggle: () => void;
     questions: Question[];
@@ -30,11 +29,18 @@ const QuestionsList = ({
     error,
 }: Props) => {
     const { query, setQuery } = useQuestionsQuery();
-    const { specializations } = useFilters();
+    const { data } = useGetSpecializationsQuery();
 
-    const specializationTitle = specializations?.find(
+    const specializations = data?.data ?? [];
+
+    const specializationTitle = specializations.find(
         (item) => item.id === query.specializationId,
     )?.title;
+
+    const slugs = useMemo(
+        () => questions.map((question) => question.slug),
+        [questions],
+    );
 
     useEffect(() => {
         //прокрутка и ждем чтоб все прогрузилось, иначе лагает
@@ -71,7 +77,7 @@ const QuestionsList = ({
             {questions?.length ? (
                 <>
                     <ul className={styles.accordion}>
-                        {questions.map((question) => (
+                        {questions.map((question, index) => (
                             <QuestionCard
                                 key={question.slug}
                                 title={question.title}
@@ -79,6 +85,8 @@ const QuestionsList = ({
                                 rate={question.rate}
                                 complexity={question.complexity}
                                 shortAnswer={question.shortAnswer}
+                                slugs={slugs}
+                                index={index}
                             />
                         ))}
                     </ul>

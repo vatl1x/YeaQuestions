@@ -10,12 +10,13 @@ import filterClose from "../../assets/icons/filter-close.svg";
 import styles from "./QuestionsFilter.module.scss";
 
 interface Props {
+    isLoading: boolean;
     onFilterClose?: () => void;
 }
 
-const QuestionFilter = ({ onFilterClose }: Props) => {
-    const filtersRef = useRef<HTMLDivElement>(null)
-    useClickOutside(filtersRef, onFilterClose)
+const QuestionFilter = ({ isLoading, onFilterClose }: Props) => {
+    const filtersRef = useRef<HTMLDivElement>(null);
+    useClickOutside(filtersRef, onFilterClose);
     return (
         <Card ref={filtersRef} className={styles.filterForm}>
             {onFilterClose && (
@@ -29,11 +30,11 @@ const QuestionFilter = ({ onFilterClose }: Props) => {
                     </button>
                 </div>
             )}
-            <SearchFilter />
+            <SearchFilter isLoading={isLoading} />
             <SpecializationFilter />
             <SkillsFilter />
-            <ComplexityFilter />
-            <RatingFilter />
+            <ComplexityFilter isLoading={isLoading} />
+            <RatingFilter isLoading={isLoading} />
         </Card>
     );
 };
