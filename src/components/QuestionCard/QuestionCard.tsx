@@ -12,6 +12,8 @@ export interface QuestionsResponse {
     rate: number;
     complexity: number;
     shortAnswer: string;
+    slugs: string[];
+    index: number
 }
 
 const QuestionCard = ({
@@ -20,6 +22,8 @@ const QuestionCard = ({
     rate,
     complexity,
     shortAnswer,
+    slugs,
+    index
 }: QuestionsResponse) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -45,6 +49,7 @@ const QuestionCard = ({
                     <HtmlContent html={shortAnswer} isOpen={isOpen} />
                     <Link
                         to={`/questions/${slug}`}
+                        state={{ slugs, index }}
                         className={styles.fullQuestion}
                         onClick={() =>
                             setTimeout(() => {

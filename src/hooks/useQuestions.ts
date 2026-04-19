@@ -1,52 +1,24 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useFilters } from "../context/FiltersContext";
-import { getQuestions } from "../api/questionsApi";
 import { useQuestionsQuery } from "./useQuestionsQuery";
-import type { QuestionApiResponse } from "../types/question";
-
+import { useGetQuestionsQuery } from "../store/services/questionsApi";
 export const useQuestions = () => {
     const { query, setQuery } = useQuestionsQuery();
-    const { setIsQuestionsLoading, setQuestionSlugs } =
-        useFilters();
-    const location = useLocation();
-    const [data, setData] = useState<QuestionApiResponse | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const { data, error, isLoading } = useGetQuestionsQuery({
+        page: query.page,
+        title: query.title,
+        specializationId: query.specializationId,
+        skills: query.skills,
+        complexity: query.complexity,
+        rate: query.rate,
+    });
 
     const setCurrentPage = (page: number) => {
         setQuery({ ...query, page });
     };
 
-    useEffect(() => {
-        setIsLoading(true);
-        (async () => {
-            try {
-                const response = await getQuestions({
-                    page: query.page,
-                    title: query.title,
-                    specializationId: query.specializationId,
-                    skills: query.skills,
-                    complexity: query.complexity,
-                    rate: query.rate,
-                });
-                setData(response);
-                setQuestionSlugs(
-                    response.data?.map((question) => question.slug),
-                );
-            } catch (error) {
-                setError(`Ошибка загрузки: ${error}`);
-            } finally {
-                setIsLoading(false);
-            }
-        })();
-    }, [location.search]);
-
-    useEffect(() => {
-        setIsQuestionsLoading(isLoading);
-    }, [isLoading]);
-
-    const { data: questions, total = 0, limit = 10 } = data ?? {};
+    const questions = data?.data ?? [];
+    const total = data?.total ?? 0;
+    const limit = data?.limit ?? 10;
+    const errorMessage = error ? "Ошибка загрузки" : null;
 
     return {
         questions,
@@ -55,6 +27,6 @@ export const useQuestions = () => {
         currentPage: query.page,
         setCurrentPage,
         isLoading,
-        error,
+        error: errorMessage,
     };
 };

@@ -22,6 +22,11 @@ export interface QuestionApiResponse {
     limit: number;
 }
 
+export interface QuestionNavigationState {
+    slugs?: string[];
+    index?: number;
+}
+
 export interface DetailedQuestion {
     id: number;
     slug: string;

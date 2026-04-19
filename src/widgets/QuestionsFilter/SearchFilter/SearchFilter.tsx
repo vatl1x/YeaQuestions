@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { useFilters } from "../../../context/FiltersContext";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { useQuestionsQuery } from "../../../hooks/useQuestionsQuery";
 import Skeleton from "../../../ui/Skeleton/Skeleton";
 import search from "../../../assets/icons/search.svg";
 import styles from "./SearchFilter.module.scss";
 
-const SearchFilter = () => {
+interface Props {
+    isLoading: boolean;
+}
+
+const SearchFilter = ({ isLoading }: Props) => {
     const { query, setQuery } = useQuestionsQuery();
-    const { isQuestionsLoading } = useFilters();
     const [value, setValue] = useState(query.title);
     const debounceValue = useDebounce(value, 1500);
     const isFirstRender = useRef(true);
@@ -25,13 +27,13 @@ const SearchFilter = () => {
 
         setQuery({ ...query, title: debounceValue, page: 1 });
     }, [debounceValue]);
-    
+
     //очищает инпут при сбросе фильтров
     useEffect(() => {
         setValue(query.title);
     }, [query.title]);
 
-    if (isQuestionsLoading) {
+    if (isLoading) {
         return (
             <Skeleton
                 type="text"

@@ -1,12 +1,14 @@
-import { useFilters } from "../../../context/FiltersContext";
 import Skeleton from "../../../ui/Skeleton/Skeleton";
 import ButtonFilter from "../../../ui/ButtonFilter/ButtonFilter";
 import { useQuestionsQuery } from "../../../hooks/useQuestionsQuery";
 import styles from "./RatingFilter.module.scss";
 
-const RatingFilter = () => {
+interface Props {
+    isLoading: boolean;
+}
+
+const RatingFilter = ({ isLoading }: Props) => {
     const { query, setQuery } = useQuestionsQuery();
-    const { isQuestionsLoading } = useFilters();
 
     const toggleRate = (idx: number) => {
         const currentRate = query.rate ?? [];
@@ -22,7 +24,7 @@ const RatingFilter = () => {
         });
     };
 
-    if (isQuestionsLoading) {
+    if (isLoading) {
         return (
             <div className={styles.filterGroup}>
                 <Skeleton

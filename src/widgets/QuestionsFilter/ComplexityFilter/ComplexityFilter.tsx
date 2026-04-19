@@ -1,13 +1,15 @@
-import { useFilters } from "../../../context/FiltersContext";
 import { useQuestionsQuery } from "../../../hooks/useQuestionsQuery";
 import { COMPLEXITY_RANGES } from "./complexityFilter.constants";
 import Skeleton from "../../../ui/Skeleton/Skeleton";
 import ButtonFilter from "../../../ui/ButtonFilter/ButtonFilter";
 import styles from "./ComplexityFilter.module.scss";
 
-const ComplexityFilter = () => {
+interface Props {
+    isLoading: boolean;
+}
+
+const ComplexityFilter = ({isLoading}:Props) => {
     const { query, setQuery } = useQuestionsQuery();
-    const { isQuestionsLoading } = useFilters();
 
     const toggleComplexity = (complexityValues: number[]) => {
         const currentComplexity = query.complexity ?? [];
@@ -26,7 +28,7 @@ const ComplexityFilter = () => {
         });
     };
 
-    if (isQuestionsLoading) {
+    if (isLoading) {
         return (
             <div className={styles.filterGroup}>
                 <Skeleton

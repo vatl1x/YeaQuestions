@@ -1,18 +1,18 @@
-import axios from "axios";
-import { BASE_URL } from "../constants/api";
+import { baseApi } from "./baseApi";
 import type {
     DetailedQuestion,
     QuestionApiResponse,
     QuestionsParams,
-} from "../types/question";
+} from "../../types/question";
 
-export const getQuestions = async (
-    params?: QuestionsParams,
-): Promise<QuestionApiResponse> => {
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/questions/public-questions`,
-            {
+export const questionsApi = baseApi.injectEndpoints({
+    endpoints: (builder) => ({
+        getQuestions: builder.query<
+            QuestionApiResponse,
+            QuestionsParams | void
+        >({
+            query: (params) => ({
+                url: "/questions/public-questions",
                 params: {
                     page: params?.page ?? 1,
                     limit: params?.limit ?? 10,
@@ -29,25 +29,17 @@ export const getQuestions = async (
                         : undefined,
                     title: params?.title?.length ? params?.title : undefined,
                 },
-            },
-        );
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
-};
+            }),
+            providesTags: ["Question"],
+        }),
+        getQuestionBySlug: builder.query<DetailedQuestion, string>({
+            query: (slug) => ({
+                url: `/questions/by-slug/${slug}`,
+            }),
+            providesTags: ["QuestionBySlug"],
+        }),
+    }),
+});
 
-export const getQuestionsBySlug = async (
-    slug: string,
-): Promise<DetailedQuestion> => {
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/questions/by-slug/${slug}`,
-        );
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
-};
+export const { useGetQuestionsQuery, useGetQuestionBySlugQuery } =
+    questionsApi;

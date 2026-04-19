@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDisclosure } from "../../hooks/useDisclosure";
-import { useDetailedQuestion } from "../../hooks/useDetailedQuestion";
 import QuestionDetailCard from "../../widgets/QuestionDetailCard/QuestionDetailCard";
 import QuestionNavigation from "../../widgets/QuestionNavigation/QuestionNavigation";
 import MetricsCard from "../../widgets/MetricsCard/MetricsCard";
@@ -10,10 +9,13 @@ import LongAnswer from "../../widgets/LongAnswer/LongAnswer";
 import Skeleton from "../../ui/Skeleton/Skeleton";
 import ArrowIcon from "../../assets/icons/arrow-left.svg?react";
 import styles from "./DetailedQuestionPage.module.scss";
+import { useGetQuestionBySlugQuery } from "../../store/services/questionsApi";
 
 const DetailedQuestionPage = () => {
-    const { slug } = useParams();
-    const { data, isLoading, error } = useDetailedQuestion(slug!);
+    const { slug } = useParams<{ slug: string }>();
+    const { data, isLoading, error } = useGetQuestionBySlugQuery(slug!, {
+        skip: !slug,
+    });
     const { isOpen, toggle, close } = useDisclosure();
     const navigate = useNavigate();
 
@@ -26,11 +28,15 @@ const DetailedQuestionPage = () => {
     }
 
     if (error) {
+        const errorMessage =
+            "status" in error
+                ? `Ошибка загрузки: ${String(error.status)}`
+                : "Ошибка загрузки";
         return (
             <div className="container">
                 <div className={styles.errorLayout}>
                     <h2 className={styles.errorTitle}>Ой, что-то сломалось!</h2>
-                    <p className={styles.errorTitle}>{error}</p>
+                    <p className={styles.errorMessage}>{errorMessage}</p>
                 </div>
             </div>
         );

@@ -16,7 +16,6 @@ const QuestionsPage = () => {
         error,
     } = useQuestions();
 
-
     return (
         <div className="container">
             <div className={styles.layout}>
@@ -32,11 +31,12 @@ const QuestionsPage = () => {
                 />
 
                 <div className={styles.filterWrap}>
-                    <QuestionFilter />
+                    <QuestionFilter isLoading={isLoading} />
                 </div>
                 {isFilterOpen && (
                     <div className={styles.filterPopover}>
                         <QuestionFilter
+                            isLoading={isLoading}
                             onFilterClose={() => setIsFilterOpen(false)}
                         />
                     </div>
