@@ -25,6 +25,7 @@ export interface QuestionApiResponse {
 export interface QuestionNavigationState {
     slugs?: string[];
     index?: number;
+    from?: string;
 }
 
 export interface DetailedQuestion {

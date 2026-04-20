@@ -12,7 +12,7 @@ const QuestionsPage = () => {
         limit,
         currentPage,
         setCurrentPage,
-        isLoading,
+        isLoadingPage,
         error,
     } = useQuestions();
 
@@ -20,7 +20,7 @@ const QuestionsPage = () => {
         <div className="container">
             <div className={styles.layout}>
                 <QuestionList
-                    isLoading={isLoading}
+                    isLoading={isLoadingPage}
                     questions={questions ?? []}
                     total={total}
                     limit={limit}
@@ -31,12 +31,12 @@ const QuestionsPage = () => {
                 />
 
                 <div className={styles.filterWrap}>
-                    <QuestionFilter isLoading={isLoading} />
+                    <QuestionFilter isLoading={isLoadingPage} />
                 </div>
                 {isFilterOpen && (
                     <div className={styles.filterPopover}>
                         <QuestionFilter
-                            isLoading={isLoading}
+                            isLoading={isLoadingPage}
                             onFilterClose={() => setIsFilterOpen(false)}
                         />
                     </div>

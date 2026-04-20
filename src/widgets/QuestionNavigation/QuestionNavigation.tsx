@@ -20,14 +20,14 @@ const QuestionNavigation = () => {
     const handlePrevSlug = () => {
         navigate(`/questions/${prevSlug}`, {
             replace: true,
-            state: { slugs, index: index - 1 },
+            state: { slugs, index: index - 1, from: state?.from },
         });
     };
 
     const handleNextSlug = () => {
         navigate(`/questions/${nextSlug}`, {
             replace: true,
-            state: { slugs, index: index + 1 },
+            state: { slugs, index: index + 1, from: state?.from },
         });
     };
 
