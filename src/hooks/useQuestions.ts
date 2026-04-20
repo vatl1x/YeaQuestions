@@ -2,7 +2,7 @@ import { useQuestionsQuery } from "./useQuestionsQuery";
 import { useGetQuestionsQuery } from "../store/services/questionsApi";
 export const useQuestions = () => {
     const { query, setQuery } = useQuestionsQuery();
-    const { data, error, isLoading } = useGetQuestionsQuery({
+    const { data, error, isLoading, isFetching } = useGetQuestionsQuery({
         page: query.page,
         title: query.title,
         specializationId: query.specializationId,
@@ -26,7 +26,7 @@ export const useQuestions = () => {
         limit,
         currentPage: query.page,
         setCurrentPage,
-        isLoading,
+        isLoadingPage: isLoading || isFetching,
         error: errorMessage,
     };
 };

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDisclosure } from "../../hooks/useDisclosure";
 import QuestionDetailCard from "../../widgets/QuestionDetailCard/QuestionDetailCard";
 import QuestionNavigation from "../../widgets/QuestionNavigation/QuestionNavigation";
@@ -10,16 +10,26 @@ import Skeleton from "../../ui/Skeleton/Skeleton";
 import ArrowIcon from "../../assets/icons/arrow-left.svg?react";
 import styles from "./DetailedQuestionPage.module.scss";
 import { useGetQuestionBySlugQuery } from "../../store/services/questionsApi";
+import type { QuestionNavigationState } from "../../types/question";
 
 const DetailedQuestionPage = () => {
     const { slug } = useParams<{ slug: string }>();
-    const { data, isLoading, error } = useGetQuestionBySlugQuery(slug!, {
-        skip: !slug,
-    });
+    //тут currentData чтобы скелетон работал при пагинации детальных вопросов
+    const { currentData, isLoading, isFetching, error } =
+        useGetQuestionBySlugQuery(slug!, {
+            skip: !slug,
+        });
     const { isOpen, toggle, close } = useDisclosure();
+    const location = useLocation();
+    const state = location.state as QuestionNavigationState | null;
     const navigate = useNavigate();
+    
+    //для стабильного возврата назад(идем по сохрненному пути from | запасной /questions)
+    const handleBack = () => navigate(state?.from ?? "/questions");
 
-    if (isLoading && !data) {
+    const showSkeleton = (isLoading || isFetching) && !currentData;
+
+    if (showSkeleton) {
         return (
             <div className="container">
                 <Skeleton type="question" count={10} direction="column" />
@@ -27,7 +37,7 @@ const DetailedQuestionPage = () => {
         );
     }
 
-    if (error) {
+    if (error && !currentData) {
         const errorMessage =
             "status" in error
                 ? `Ошибка загрузки: ${String(error.status)}`
@@ -42,33 +52,33 @@ const DetailedQuestionPage = () => {
         );
     }
 
-    if (!data) return null;
+    if (!currentData) return null;
 
     return (
         <div className="container">
-            <button className={styles.prevPage} onClick={() => navigate(-1)}>
+            <button className={styles.prevPage} onClick={handleBack}>
                 <ArrowIcon width={24} height={24} />
                 Назад
             </button>
             <div className={styles.layout}>
                 <div className={styles.question}>
                     <QuestionDetailCard
-                        title={data.title}
-                        description={data.description}
-                        imageSrc={data.imageSrc}
+                        title={currentData.title}
+                        description={currentData.description}
+                        imageSrc={currentData.imageSrc}
                         onSidebarToggle={toggle}
                     />
                     <QuestionNavigation />
-                    <ShortAnswer shortAnswer={data.shortAnswer} />
-                    <LongAnswer longAnswer={data.longAnswer} />
+                    <ShortAnswer shortAnswer={currentData.shortAnswer} />
+                    <LongAnswer longAnswer={currentData.longAnswer} />
                 </div>
                 <div className={styles.questionSidebar}>
                     <MetricsCard
-                        complexity={data.complexity}
-                        rate={data.rate}
-                        questionSkills={data.questionSkills}
-                        keywords={data.keywords}
-                        createdBy={data.createdBy}
+                        complexity={currentData.complexity}
+                        rate={currentData.rate}
+                        questionSkills={currentData.questionSkills}
+                        keywords={currentData.keywords}
+                        createdBy={currentData.createdBy}
                     />
                     <GuruCard />
                 </div>
@@ -76,11 +86,11 @@ const DetailedQuestionPage = () => {
                     <div className={styles.sidebarPopover}>
                         <MetricsCard
                             onMetricClose={close}
-                            complexity={data.complexity}
-                            rate={data.rate}
-                            questionSkills={data.questionSkills}
-                            keywords={data.keywords}
-                            createdBy={data.createdBy}
+                            complexity={currentData.complexity}
+                            rate={currentData.rate}
+                            questionSkills={currentData.questionSkills}
+                            keywords={currentData.keywords}
+                            createdBy={currentData.createdBy}
                         />
                     </div>
                 )}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MetricBadge from "../../ui/MetricBadge/MetricBadge";
 import HtmlContent from "../../ui/HtmlContent/HtmlContent";
 import arrowUp from "../../assets/icons/arrow-up.svg";
@@ -13,7 +13,7 @@ export interface QuestionsResponse {
     complexity: number;
     shortAnswer: string;
     slugs: string[];
-    index: number
+    index: number;
 }
 
 const QuestionCard = ({
@@ -23,9 +23,11 @@ const QuestionCard = ({
     complexity,
     shortAnswer,
     slugs,
-    index
+    index,
 }: QuestionsResponse) => {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const from = `${location.pathname}${location.search}`;
 
     return (
         <li className={styles.accordionItem}>
@@ -49,7 +51,7 @@ const QuestionCard = ({
                     <HtmlContent html={shortAnswer} isOpen={isOpen} />
                     <Link
                         to={`/questions/${slug}`}
-                        state={{ slugs, index }}
+                        state={{ slugs, index, from }}
                         className={styles.fullQuestion}
                         onClick={() =>
                             setTimeout(() => {
