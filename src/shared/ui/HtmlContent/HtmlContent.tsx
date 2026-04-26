@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import hljs from "highlight.js";
+import DOMPurify from "dompurify";
 import "highlight.js/styles/atom-one-dark.css";
 import styles from "./HtmlContent.module.scss";
 
@@ -20,17 +21,25 @@ export const HtmlContent = ({ html, isOpen = true }: Props) => {
         });
     }, [html, isOpen]);
 
-    //чистка мусора(пустых строк) с апи
-    const cleanedHtml = html.replace(
-        /(?:<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>\s*)+$/gi,
-        "",
+    //чистка мусора(пустых строк) с апи и санитайз
+    const safeHtml = useMemo(
+        () =>
+            DOMPurify.sanitize(
+                html.replace(
+                    /(?:<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>\s*)+$/gi,
+                    "",
+                ),
+            ),
+        [html],
     );
 
     return (
         <div
             ref={ref}
             className={styles.htmlContent}
-            dangerouslySetInnerHTML={{ __html: cleanedHtml }}
+            dangerouslySetInnerHTML={{
+                __html: safeHtml,
+            }}
         />
     );
 };
