@@ -13,7 +13,12 @@ export const QuestionSkills = ({ skills }: Props) => {
                 {skills?.map((skill) => (
                     <div key={skill.id} className={styles.skill}>
                         {!!skill.imageSrc && (
-                            <img src={skill.imageSrc} width={20} height={20} />
+                            <img
+                                src={skill.imageSrc}
+                                alt=""
+                                width={20}
+                                height={20}
+                            />
                         )}
                         <span>{skill.title}</span>
                     </div>

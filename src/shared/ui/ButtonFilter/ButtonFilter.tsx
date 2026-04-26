@@ -13,7 +13,7 @@ export const ButtonFilter = ({ title, icon, isActive, onClick }: Props) => {
             className={`${styles.wrapper} ${isActive ? styles.active : ""}`}
             onClick={onClick}
         >
-            {icon && <img src={icon} width={30} height={30} />}
+            {icon && <img src={icon} alt="" width={30} height={30} />}
             <span className={styles.title}>{title}</span>
         </button>
     );

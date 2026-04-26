@@ -6,7 +6,7 @@ import withSkeleton from "@/shared/lib/hocs/withSkeleton";
 import { useQuestionsQuery } from "@/entities/question";
 import { DEFAULT_QUERY } from "../../model/constants";
 import { useGetSpecializationsQuery } from "@/entities/specialization";
-import filterBtn from "../../assets/filter-btn.svg";
+import filterBtn from "@/shared/assets/icons/filter-btn.svg";
 import styles from "./QuestionsList.module.scss";
 import { useScrollToTop } from "@/shared/lib/hooks/useScrollToTop";
 import type { Question } from "@/entities/question/model/types";

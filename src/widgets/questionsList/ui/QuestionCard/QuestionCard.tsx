@@ -36,6 +36,7 @@ const QuestionCard = ({
                 <button>
                     <img
                         src={arrowUp}
+                        alt=""
                         className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ""}`}
                     />
                 </button>

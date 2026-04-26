@@ -6,7 +6,7 @@ import { AuthButtons } from "@/features/authentication";
 import AuthDropdown from "@/features/authentication/ui/AuthDropdown/AuthDropdown";
 import useClickOutside from "@/shared/lib/hooks/useClickOutside";
 import ArrowIcon from "@/shared/assets/icons/arrow-up.svg";
-import burger from "../../assets/burger-btn.svg";
+import burger from "@/shared/assets/icons/burger-btn.svg";
 import styles from "./Header.module.scss";
 
 export const Header = () => {
