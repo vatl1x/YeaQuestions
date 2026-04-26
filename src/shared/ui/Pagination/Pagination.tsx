@@ -1,7 +1,10 @@
 import { useMemo } from "react";
-import arrowBtn from "./assets/pagination-btn.svg";
+import arrowBtn from "@/shared/assets/icons/pagination-btn.svg";
 import styles from "./Pagination.module.scss";
-import { type PaginationItem, usePagination } from "@/shared/lib/hooks/usePagination";
+import {
+    type PaginationItem,
+    usePagination,
+} from "@/shared/lib/hooks/usePagination";
 
 interface Props {
     total: number;
@@ -48,7 +51,7 @@ export const Pagination = ({
                 disabled={currentPage === 1}
                 onClick={prev}
             >
-                <img src={arrowBtn} className={styles.arrowLeft}></img>
+                <img src={arrowBtn} alt="" className={styles.arrowLeft} />
             </button>
             <div className={styles.collectionPage}>
                 {paginationItems.map((page, idx) => (
@@ -68,7 +71,7 @@ export const Pagination = ({
                 disabled={currentPage === totalPages}
                 onClick={next}
             >
-                <img src={arrowBtn} className={styles.arrowRight}></img>
+                <img src={arrowBtn} alt="" className={styles.arrowRight} />
             </button>
         </div>
     );

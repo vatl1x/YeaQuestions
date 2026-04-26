@@ -1,6 +1,6 @@
 import { Card } from "@/shared/ui";
 import { SOCIALS } from "../model/constants";
-import avatar from "../assets/guru-avatar.png";
+import avatar from "@/shared/assets/icons/guru-avatar.png";
 import styles from "./GuruCard.module.scss";
 
 //захардкодил так как данных нет в апи
@@ -8,7 +8,12 @@ export const GuruCard = () => {
     return (
         <Card className={styles.guru}>
             <div className={styles.header}>
-                <img src={avatar} alt="" width={45} height={45} />
+                <img
+                    src={avatar}
+                    alt="Аватар Ruslan Kuyanets"
+                    width={45}
+                    height={45}
+                />
                 <div>
                     <p className={styles.name}>Ruslan Kuyanets</p>
                     <p className={styles.role}>React Guru</p>

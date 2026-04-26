@@ -1,6 +1,6 @@
 import { Card } from "@/shared/ui";
-import yeahubIcon from "../assets/yeahub-square.png";
-import sidebarBtn from "../assets/sidebar-button.svg";
+import yeahubIcon from "@/shared/assets/icons/yeahub-square.png";
+import sidebarBtn from "@/shared/assets/icons/sidebar-button.svg";
 import styles from "./QuestionDetailCard.module.scss";
 
 interface Props {
@@ -21,7 +21,7 @@ export const QuestionDetailCard = ({
             <img
                 src={imageSrc ?? yeahubIcon}
                 className={styles.yeaIcon}
-                alt=""
+                alt="Картинка к вопросу"
                 width={160}
                 height={160}
             />

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import loginIcon from "../../assets/login-icon.svg";
-import regIcon from "../../assets/reg-icon.svg";
+import loginIcon from "@/shared/assets/icons/login-icon.svg";
+import regIcon from "@/shared/assets/icons/reg-icon.svg";
 import styles from "./AuthButtons.module.scss";
 import clsx from "clsx";
 
@@ -24,7 +24,7 @@ export const AuthButtons = ({ variant = "desktop" }: Props) => {
                 })}
             >
                 {variant === "mobile" && (
-                    <img src={loginIcon} width="24px" height="24px"></img>
+                    <img src={loginIcon} alt="" width="24px" height="24px" />
                 )}
                 Вход
             </Link>
@@ -36,7 +36,7 @@ export const AuthButtons = ({ variant = "desktop" }: Props) => {
                 })}
             >
                 {variant === "mobile" && (
-                    <img src={regIcon} width="24px" height="24px"></img>
+                    <img src={regIcon} alt="" width="24px" height="24px" />
                 )}
                 Регистрация
             </Link>

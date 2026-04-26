@@ -1,6 +1,6 @@
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { useSearchFilter } from "../../model/useSearchFilter";
-import search from "../../assets/search.svg";
+import search from "@/shared/assets/icons/search.svg";
 import styles from "./SearchFilter.module.scss";
 
 interface Props {
